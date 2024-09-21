@@ -60,15 +60,15 @@ export default function Home() {
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <div className="h1 text-center text-lg text-yellow-500">Supriya's Website</div>
         <div className="flex text-center justify-center text-justify">
-          <div className="flex-auto text-center align-center h1 text-lg whitespace-normal text-blue-200">{`Hostname:`} &nbsp;</div>
+          <div className="flex-auto text-center align-center h1 text-lg whitespace-normal text-blue-200">{`Hostname:`}</div>
           <div className="flex-auto text-center h1 text-lg text-blue-500">{getHostName()}</div>
         </div>
         <div className="flex text-center justify-center">
-          <div className="flex-auto text-center align-center h1 text-lg whitespace-normal text-orange-200">{`Private IP Address:`} &nbsp;</div>
+          <div className="flex-auto text-center align-center h1 text-lg whitespace-normal text-orange-200">{`Private IP Address:`}</div>
           <div className="flex-auto text-center h1 text-lg text-orange-500">{getPrivateIPAddr()}</div>
         </div>
         <div className="flex text-center justify-center">
-          <div className="flex-auto text-center align-center h1 text-lg whitespace-normal text-orange-200">{`Public IP Address:`} &nbsp;</div>
+          <div className="flex-auto text-center align-center h1 text-lg whitespace-normal text-orange-200">{`Public IP Address:`}</div>
           <div className="flex-auto text-center h1 text-lg text-orange-500">{getPublicIPAddr()}</div>
         </div>
       </main>
