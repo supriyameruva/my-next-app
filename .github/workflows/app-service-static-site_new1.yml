@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - new1
 on:
   push:
     branches:
-      - app-service-static-site
+      - static-site
   workflow_dispatch:
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
           npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip release.zip ./out/* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -46,6 +46,9 @@ jobs:
       id-token: write #This is required for requesting the JWT
 
     steps:
+      - name: Clean up current directory
+        run: rm -rf ./* # This removes all files and directories in the current directory
+        
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
@@ -57,9 +60,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2890B3B6BEC843B4B92813CD37E60474 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_6FEAED63B8EE45FFB3D16940BD10351C }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EA8D5E70BD0F41048C292461347C4950 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7BCC6C000B69409A9D31FBAE1088444E }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C25F8FB6C05446D9BF4D353B01A3E3C7 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_398F8FB8643343779CFE9887C2D6BC93 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -67,5 +70,5 @@ jobs:
         with:
           app-name: 'new1'
           slot-name: 'Production'
-          package: .
+          package: './out'
           
